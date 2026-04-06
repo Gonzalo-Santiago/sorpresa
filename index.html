@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Violeta 💜</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    overflow: hidden;
+
+    /* 🌌 Fondo: Negro profundo con un toque de rojo vino sutil */
+    background: linear-gradient(135deg, #0a0000, #1f0505, #000000);
+    height: 100vh;
+}
+
+/* ✨ Capa de luces neón en tonos rojos y violetas */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(255, 0, 50, 0.12), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(138, 43, 226, 0.15), transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(150, 0, 0, 0.05), transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* 💳 Contenedor (Tarjeta) */
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    padding: 50px;
+    border-radius: 25px;
+    width: 85%;
+    max-width: 600px;
+
+    /* Fondo oscuro casi sólido para que el texto sea legible */
+    background: rgba(10, 0, 0, 0.85);
+    backdrop-filter: blur(20px);
+
+    /* Borde sutil en tono magenta/rojo */
+    border: 1px solid rgba(255, 0, 80, 0.2);
+
+    box-shadow:
+        0 0 30px rgba(0, 0, 0, 0.8),
+        0 0 15px rgba(255, 0, 100, 0.1);
+
+    text-align: center;
+    z-index: 10;
+}
+
+/* 🖋️ Títulos y Textos */
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    margin-bottom: 25px;
+    color: #ffffff;
+    
+    /* Resplandor violeta para mantener la esencia del nombre */
+    text-shadow:
+        0 0 10px rgba(216, 123, 255, 0.8),
+        0 0 20px rgba(180, 0, 255, 0.4);
+}
+
+#mensaje {
+    font-size: 22px;
+    line-height: 1.6;
+    height: 80px; /* Altura fija para evitar que la tarjeta salte al cambiar texto */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 1.5s ease, transform 1.5s ease;
+    color: #f0f0f0;
+}
+
+.mostrar {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+.final {
+    margin-top: 30px;
+    font-size: 26px;
+    font-weight: 600;
+    opacity: 0;
+    transition: 3s ease;
+    color: #ff4d6d; /* Un rojo cereza suave para la pregunta final */
+    text-shadow: 0 0 15px rgba(255, 77, 109, 0.4);
+}
+
+/* 🌸 Flores y partículas */
+.flower {
+    position: absolute;
+    font-size: 40px;
+    animation: float linear infinite;
+    opacity: 0.7;
+    filter: drop-shadow(0 0 8px rgba(255, 50, 100, 0.5));
+    user-select: none;
+}
+
+@keyframes float {
+    0% { transform: translateY(110vh) rotate(0deg) translateX(0); }
+    100% { transform: translateY(-10vh) rotate(360deg) translateX(20px); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>💜 Para ti, Violeta 💜</h1>
+    <div id="mensaje"></div>
+    <p id="final" class="final">💘 ¿Te gustaría salir conmigo otra vez? 💘</p>
+</div>
+
+<script>
+const frases = [
+    "Quiero que sepas quién robó mi atención… y fuiste tú 🌸",
+    "La verdad, el día que salimos fue muy bonito…",
+    "tranquilo, lleno de naturaleza 🌳",
+    "pero lo que realmente hizo especial ese día…",
+    "fue estar contigo, Violeta 💜",
+    "porque contigo…",
+    "todo se siente más bonito…",
+    "más natural… ✨",
+    "y mucho más especial…",
+    "y siendo sincero…",
+    "me gustaría volver a salir contigo 💘"
+];
+
+let i = 0;
+
+function mostrarFrases() {
+    const mensaje = document.getElementById("mensaje");
+
+    if (i < frases.length) {
+        mensaje.classList.remove("mostrar");
+
+        setTimeout(() => {
+            mensaje.textContent = frases[i];
+            mensaje.classList.add("mostrar");
+            i++;
+        }, 500);
+
+        // Ajusté el tiempo a 3500ms para que dé tiempo de leer bien
+        setTimeout(mostrarFrases, 3500);
+    } else {
+        document.getElementById("final").style.opacity = 1;
+    }
+}
+
+// Iniciar animación
+setTimeout(mostrarFrases, 1500);
+
+/* Generador de flores y emojis */
+function crearFlor() {
+    const flor = document.createElement("div");
+    flor.classList.add("flower");
+
+    const tipos = ["🌸","💜","🌺","✨","🌹"];
+    flor.innerHTML = tipos[Math.floor(Math.random()*tipos.length)];
+
+    flor.style.left = Math.random() * 100 + "vw";
+    // Duración aleatoria para que no bajen todas igual
+    flor.style.animationDuration = (7 + Math.random() * 7) + "s";
+    flor.style.fontSize = (20 + Math.random() * 30) + "px";
+
+    document.body.appendChild(flor);
+
+    setTimeout(() => flor.remove(), 14000);
+}
+
+setInterval(crearFlor, 400);
+</script>
+
+</body>
+</html>
